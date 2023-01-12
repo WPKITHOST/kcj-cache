@@ -87,3 +87,28 @@ function dch_core_autoload($class) {
 		);
 	}
 }
+
+
+
+/**
+ * Initialize the plugin tracker
+ *
+ * @return void
+ */
+function appsero_init_tracker_kcj_cache() {
+
+    if ( ! class_exists( 'Appsero\Client' ) ) {
+      require_once __DIR__ . '/appsero/src/Client.php';
+    }
+
+    $client = new Appsero\Client( '51f34fa4-8573-4a6f-a192-525b9ee62d78', 'KCJ WordPress Cache', __FILE__ );
+
+    // Active insights
+    $client->insights()->init();
+
+    // Active automatic updater
+    $client->updater();
+
+}
+
+appsero_init_tracker_kcj_cache();
